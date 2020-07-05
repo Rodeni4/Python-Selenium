@@ -3,11 +3,14 @@ from selenium.common.exceptions import NoSuchElementException
 
 
 class BasePage():
+    # добавим конструктор — метод, который вызывается, когда мы создаем объект.
     def __init__(self, browser, url):
+        #в качестве параметров мы передаем экземпляр драйвера и url адрес.
         self.browser = browser
         self.url = url
 
     def open(self):
+        #Он должен открывать нужную страницу в браузере, используя метод get()
         self.browser.get(self.url)
     #Добавим команду для неявного ожидания со значением по умолчанию в 10
     def __init__(self, browser, url, timeout=10):
