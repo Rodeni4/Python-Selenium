@@ -9,6 +9,7 @@ class ProductPage(BasePage):
         self.solve_quiz_and_get_code()
         self.should_message_added_basket()
         self.should_message_product_cost()
+        self.should_not_be_success_message()
 
     def should_be_product_page_url(self):
         # реализуйте проверку на корректный url адрес
@@ -29,6 +30,12 @@ class ProductPage(BasePage):
         assert "Your basket total is now" in message.text, "No message 'Your basket total is now'"
         product_cost = self.browser.find_element(*ProductPageLocators.PRODUCT_COST)
         assert product_cost.text in message.text, "Basket price doesn't match"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is presented, but should not be"
+
+    def should_disappear_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "Success message is presented, but should not be"
 
 
 
